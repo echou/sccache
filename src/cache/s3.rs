@@ -51,6 +51,9 @@ impl S3Cache {
             builder.endpoint(&endpoint_resolver(endpoint, use_ssl)?);
         }
 
+        // todo: add environment variable
+        builder.enable_virtual_host_style();
+        
         let op = Operator::new(builder)?
             .layer(LoggingLayer::default())
             .finish();
